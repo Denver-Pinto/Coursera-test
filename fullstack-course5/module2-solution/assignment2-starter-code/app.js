@@ -3,43 +3,43 @@
 'use strict';
 
 angular.module('shoppingListCheckOut', [])
-.controller('ShoppingListAddController', ShoppingListAddController)
-.controller('ShoppingListShowController', ShoppingListShowController)
-.service('ShoppingListService', ShoppingListService);
+.controller('ToAddController', ToAddController)
+.controller('ToBuyController', ToBuyController)
+.service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
 
 
-ShoppingListAddController.$inject = ['ShoppingListService'];
-function ShoppingListAddController(ShoppingListService) {
+ToAddController.$inject = ['ShoppingListCheckOffService'];
+function ToAddController(ShoppingListCheckOffService) {
   var itemAdder = this;
 
-  itemAdder.itemsBought = ShoppingListService.getItemsBought();
+  itemAdder.itemsBought = ShoppingListCheckOffService.getItemsBought();
 
 }
 
 
 
 
-ShoppingListShowController.$inject = ['ShoppingListService'];
-function ShoppingListShowController(ShoppingListService) {
+ToBuyController.$inject = ['ShoppingListCheckOffService'];
+function ToBuyController(ShoppingListCheckOffService) {
   var showList = this;
   showList.itemName = "";
   showList.itemQuantity = "";
-  showList.itemsToBeBought = ShoppingListService.getItemsToBeBought();
+  showList.itemsToBeBought = ShoppingListCheckOffService.getItemsToBeBought();
   
 
   showList.removeItem = function (itemIndex) {
-    ShoppingListService.removeItem(itemIndex);
+    ShoppingListCheckOffService.removeItem(itemIndex);
    
 
   };
   showList.addItem = function () {
-    ShoppingListService.addItem(showList.itemName, showList.itemQuantity);
+    ShoppingListCheckOffService.addItem(showList.itemName, showList.itemQuantity);
   }
 }
 
 
-function ShoppingListService() {
+function ShoppingListCheckOffService() {
   var service = this;
 
   // List of shopping items
