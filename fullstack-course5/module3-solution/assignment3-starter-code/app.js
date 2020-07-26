@@ -79,7 +79,7 @@ function MenuSearchService( $http, ApiBasePath)
       {
         ctrl.found ="";
         ctrl.errorMsg = "Nothing Found!"
-        console.log(ctrl.errorMsg);
+        //console.log(ctrl.errorMsg);
       }
       //console.log(ctrl.found);
 
@@ -88,7 +88,7 @@ function MenuSearchService( $http, ApiBasePath)
     else {
       ctrl.found ="";
       ctrl.errorMsg = "Nothing Found!"
-      console.log(ctrl.errorMsg);
+      //console.log(ctrl.errorMsg);
     }
     
     
