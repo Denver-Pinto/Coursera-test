@@ -30,6 +30,31 @@ function routeConfig ($stateProvider) {
         }]
       }
     })
+    .state('public.signup', {
+      url: '/signup',
+      templateUrl: 'src/public/signup/signup.html',
+      controller: 'SignUpController',
+      controllerAs: 'reg',
+      resolve: {
+        user: ['InfoService', function (InfoService) {
+          return InfoService.getDetails();
+        }]
+      }
+    })
+    .state('public.myinfo', {
+      url: '/myinfo',
+      templateUrl: 'src/public/myinfo/myinfo.html',
+      controller: 'MyInfoController',
+      controllerAs: 'reg',
+      resolve: {
+        user: ['InfoService', function (InfoService) {
+          return InfoService.getDetails();
+        }],
+        menuItem: ['MenuService','InfoService', function ( MenuService,InfoService) {
+          return MenuService.getMenuItem(InfoService.getShortName());
+        }],
+      }
+    })
     .state('public.menuitems', {
       url: '/menu/{category}',
       templateUrl: 'src/public/menu-items/menu-items.html',
@@ -39,6 +64,7 @@ function routeConfig ($stateProvider) {
         menuItems: ['$stateParams','MenuService', function ($stateParams, MenuService) {
           return MenuService.getMenuItems($stateParams.category);
         }]
+
       }
     });
 }
